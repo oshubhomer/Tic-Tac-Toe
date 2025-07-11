@@ -1,0 +1,66 @@
+/* Reset and body styling */
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: linear-gradient(to right, #035244, #acb6e5);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Container to center the grid */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Grid styling */
+.grid {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffffcc;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Row and columns */
+.row {
+    display: flex;
+}
+
+.col {
+    height: 80px;
+    width: 80px;
+    margin: 5px;
+    border-radius: 10px;
+    border: 2px solid #333;
+    background-color: #f9f9f9;
+    color: #333;
+    font-size: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+/* Hover effect */
+.col:hover {
+    background-color: #e0f7fa;
+    transform: scale(1.05);
+    border-color: #00796b;
+}
+
+/* Player X and O colors */
+.col.X {
+    color: #ff5252;
+}
+
+.col.O {
+    color: #448aff;
+}
