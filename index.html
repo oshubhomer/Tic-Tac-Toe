@@ -3,30 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tic-Tac-Toe</title>
-    <link href="style.css" rel="stylesheet"/>
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div class="container">
+        <div class="scoreboard">
+            <h2>Scoreboard</h2>
+            <p>X: <span id="scoreX">0</span> | O: <span id="scoreO">0</span></p>
+        </div>
+
         <div class="grid">
             <div class="row">
-                <div  onclick="handleclick(this)" id="0" class="col"></div>
-                <div  onclick="handleclick(this)" id="1" class="col"></div>
-                <div  onclick="handleclick(this)" id="2" class="col"></div>
+                <div onclick="handleclick(this)" id="0" class="col"></div>
+                <div onclick="handleclick(this)" id="1" class="col"></div>
+                <div onclick="handleclick(this)" id="2" class="col"></div>
             </div>
             <div class="row">
-                <div  onclick="handleclick(this)" id="3" class="col"></div>
-                <div  onclick="handleclick(this)" id="4" class="col"></div>
-                <div  onclick="handleclick(this)" id="5" class="col"></div>
+                <div onclick="handleclick(this)" id="3" class="col"></div>
+                <div onclick="handleclick(this)" id="4" class="col"></div>
+                <div onclick="handleclick(this)" id="5" class="col"></div>
             </div>
             <div class="row">
-                <div  onclick="handleclick(this)" id="6" class="col"></div>
-                <div  onclick="handleclick(this)" id="7" class="col"></div>
-                <div  onclick="handleclick(this)" id="8" class="col"></div>
+                <div onclick="handleclick(this)" id="6" class="col"></div>
+                <div onclick="handleclick(this)" id="7" class="col"></div>
+                <div onclick="handleclick(this)" id="8" class="col"></div>
             </div>
-            
         </div>
+
+        <div id="message">Player X Turn</div>
+
+        <button class="reset-btn" onclick="resetGame()">Reset Game</button>
     </div>
+
+    <audio id="clickSound" src="click.mp3"></audio>
+    <audio id="winSound" src="win.mp3"></audio>
+    <audio id="drawSound" src="draw.mp3"></audio>
+
     <script src="temp.js"></script>
 </body>
 </html>
