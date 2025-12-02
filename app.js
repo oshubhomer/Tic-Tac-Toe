@@ -1,25 +1,40 @@
 let currentPlayer = "X";
 let arr = Array(9).fill(null);
 let gameOver = false;
+let scoreX = 0;
+let scoreO = 0;
+
+const clickSound = document.getElementById("clickSound");
+const winSound = document.getElementById("winSound");
+const drawSound = document.getElementById("drawSound");
+
+function updateScore() {
+    document.getElementById("scoreX").innerText = scoreX;
+    document.getElementById("scoreO").innerText = scoreO;
+}
 
 function checkGameStatus() {
     const winPatterns = [
-        [0, 1, 2], [3, 4, 5], [6, 7, 8], // rows
-        [0, 3, 6], [1, 4, 7], [2, 5, 8], // cols
-        [0, 4, 8], [2, 4, 6]             // diagonals
+        [0,1,2], [3,4,5], [6,7,8],
+        [0,3,6], [1,4,7], [2,5,8],
+        [0,4,8], [2,4,6]
     ];
 
     for (const pattern of winPatterns) {
-        const [a, b, c] = pattern;
+        const [a,b,c] = pattern;
         if (arr[a] && arr[a] === arr[b] && arr[b] === arr[c]) {
-            showMessage(`🎉 Winner is ${arr[a]}!`);
+            showMessage(`🎉 ${arr[a]} Wins!`);
+            winSound.play();
+            arr[a] === "X" ? scoreX++ : scoreO++;
+            updateScore();
             gameOver = true;
             return;
         }
     }
 
     if (!arr.includes(null)) {
-        showMessage("😅 It's a draw!");
+        showMessage("😅 Draw Game!");
+        drawSound.play();
         gameOver = true;
     }
 }
@@ -30,32 +45,31 @@ function handleclick(ele) {
     const id = Number(ele.id);
     if (arr[id] !== null) return;
 
+    clickSound.play();
     arr[id] = currentPlayer;
     ele.innerText = currentPlayer;
-    ele.classList.add(currentPlayer); // styling class
+    ele.classList.add(currentPlayer);
 
     checkGameStatus();
 
     if (!gameOver) {
         currentPlayer = currentPlayer === "X" ? "O" : "X";
+        showMessage(`Player ${currentPlayer} Turn`);
     }
-
-    console.log(arr);
 }
 
 function showMessage(msg) {
-    let msgBox = document.getElementById("message");
-    if (!msgBox) {
-        msgBox = document.createElement("div");
-        msgBox.id = "message";
-        msgBox.style.cssText = `
-            margin-top: 20px;
-            font-size: 40px;
-            font-weight: bold;
-            color: #333;
-            text-align: center;
-        `;
-        document.body.appendChild(msgBox);
-    }
-    msgBox.textContent = msg;
+    document.getElementById("message").textContent = msg;
+}
+
+function resetGame() {
+    arr.fill(null);
+    gameOver = false;
+    currentPlayer = "X";
+    showMessage("Player X Turn");
+
+    document.querySelectorAll(".col").forEach(box => {
+        box.innerText = "";
+        box.classList.remove("X", "O");
+    });
 }
